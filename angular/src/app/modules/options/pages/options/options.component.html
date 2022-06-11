@@ -7,11 +7,21 @@
 		<title>Options Page</title>
 	</head>
 	<body>
-        updated update
+		updated update
+		<div>
+			<h1>Webhook Servers</h1>
+			<div *ngFor="let server of webhookServers">
+				Name: {{ server.serverName }} 
+                Webhook: {{ server.webhookURL }}
+			</div>
+		</div>
+
 		<form [formGroup]="optionsForm" (ngSubmit)="onUpdateWebhook()">
 			<label for="webhookUrl">Webhook URL</label>
-			<input type="text" id="webhookUrl" formControlName="webhookUrl"/>
-            <button type="submit">Update Webhook Url</button>
+			<input type="text" id="webhookUrl" formControlName="webhookUrl" />
+			<label for="serverName">serverName</label>
+			<input type="text" id="serverName" formControlName="serverName" />
+			<button type="submit">Update Webhook Url</button>
 		</form>
 
 		<form [formGroup]="monitorForm" (ngSubmit)="onSubmitMonitorConfig()">
@@ -26,7 +36,7 @@
 				<input type="radio" name="textState" id="textState" [value]="state" />
 				{{ state }}
 			</div>
-            <button type="submit">Add Monitor Config</button>
+			<button type="submit">Add Monitor Config</button>
 		</form>
 	</body>
 </html>
