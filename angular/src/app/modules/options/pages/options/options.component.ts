@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { serverWebhooks } from '../../options.interface';
 
 @Component({
@@ -21,15 +21,15 @@ export class OptionsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.optionsForm = new FormGroup({
-			'webhookUrl': new FormControl(null),
-			'serverName': new FormControl(null),
+			'serverName': new FormControl(null, [Validators.required, Validators.nullValidator]),
+			'webhookUrl': new FormControl(null, [Validators.required, Validators.nullValidator]),
 		});
 
 		this.monitorForm = new FormGroup({
-			'pageURL': new FormControl(null),
-			'identifier': new FormControl(null),
-			'textToSearch': new FormControl(null),
-			'textState': new FormControl(null)
+			'pageURL': new FormControl(null, [Validators.required, Validators.nullValidator]),
+			'identifier': new FormControl(null, [Validators.required, Validators.nullValidator]),
+			'textToSearch': new FormControl(null, [Validators.required, Validators.nullValidator]),
+			'textState': new FormControl(null, [Validators.required, Validators.nullValidator])
 		});
 	}
 

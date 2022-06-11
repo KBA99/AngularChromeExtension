@@ -7,20 +7,20 @@
 		<title>Options Page</title>
 	</head>
 	<body>
-		updated update
+		updated updates
 		<div>
 			<h1>Webhook Servers</h1>
 			<div *ngFor="let server of webhookServers">
 				Name: {{ server.serverName }} 
-                Webhook: {{ server.webhookURL }}
+                Webhook: {{ server.webhookUrl }}
 			</div>
 		</div>
 
 		<form [formGroup]="optionsForm" (ngSubmit)="onUpdateWebhook()">
-			<label for="webhookUrl">Webhook URL</label>
-			<input type="text" id="webhookUrl" formControlName="webhookUrl" />
 			<label for="serverName">serverName</label>
 			<input type="text" id="serverName" formControlName="serverName" />
+            <label for="webhookUrl">Webhook URL</label>
+			<input type="text" id="webhookUrl" formControlName="webhookUrl" />
 			<button type="submit">Update Webhook Url</button>
 		</form>
 
