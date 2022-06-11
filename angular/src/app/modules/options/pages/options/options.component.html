@@ -7,14 +7,14 @@
 		<title>Options Page</title>
 	</head>
 	<body>
-        Another update
-		<form [formGroup]="optionsForm">
+        updated update
+		<form [formGroup]="optionsForm" (ngSubmit)="onUpdateWebhook()">
 			<label for="webhookUrl">Webhook URL</label>
 			<input type="text" id="webhookUrl" formControlName="webhookUrl"/>
             <button type="submit">Update Webhook Url</button>
 		</form>
 
-		<form [formGroup]="monitorForm">
+		<form [formGroup]="monitorForm" (ngSubmit)="onSubmitMonitorConfig()">
 			<label for="pageUrl">Page URL</label>
 			<input type="text" name="pageUrl" id="pageUrl" />
 			<label for="identifier">Element Identifier</label>

@@ -25,5 +25,11 @@ export class OptionsComponent implements OnInit {
 		});
 	}
 
+	onUpdateWebhook() {
+		console.log(this.optionsForm)
+	}
 	
+	onSubmitMonitorConfig() {
+		console.log(this.monitorForm)
+	}
 }
