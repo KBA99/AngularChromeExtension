@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Options Page</title>
-</head>
-<body>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Options Page</title>
+	</head>
+	<body>
+        Another update
+		<form [formGroup]="optionsForm">
+			<label for="webhookUrl">Webhook URL</label>
+			<input type="text" id="webhookUrl" formControlName="webhookUrl"/>
+            <button type="submit">Update Webhook Url</button>
+		</form>
+
+		<form [formGroup]="monitorForm">
+			<label for="pageUrl">Page URL</label>
+			<input type="text" name="pageUrl" id="pageUrl" />
+			<label for="identifier">Element Identifier</label>
+			<input type="text" name="identifier" id="identifier" />
+			<label for="textToSearch">Text to Search</label>
+			<input type="text" name="textToSearch" id="textToSearch" />
+			<label for="textState">Is text on Page</label>
+			<div *ngFor="let state of textState">
+				<input type="radio" name="textState" id="textState" [value]="state" />
+				{{ state }}
+			</div>
+            <button type="submit">Add Monitor Config</button>
+		</form>
+	</body>
 </html>
