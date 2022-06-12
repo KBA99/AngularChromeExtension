@@ -13,8 +13,9 @@ export class OptionsComponent implements OnInit {
 	constructor(){
 	}
 
-	textState: string[] = ['present', 'removed']
+	textState: string[] = ['Waiting', 'Disapper']
 	webhookServers: serverWebhooks[] = []
+	allKeys: string[] = []
 
 	optionsForm: FormGroup;
 	monitorForm: FormGroup;
@@ -36,9 +37,42 @@ export class OptionsComponent implements OnInit {
 	onUpdateWebhook() {
 		this.webhookServers.push(this.optionsForm.value)
 		console.log(this.optionsForm.value)
+		const serverName = this.optionsForm.value.serverName
+		const webhookUrl =  this.optionsForm.value.webhookUrl
+
+		chrome.storage.sync.set({[serverName]: webhookUrl}, () => {
+			console.log('Succesfully stored in chrome storage')
+		})
+
+		console.log("updated")
+		this.getAllLocalStorageKeys()
+		console.log(this.allKeys)
+
+		for(let key of this.allKeys) {
+			chrome.storage.sync.get(key, () => {
+				console.log("succesfully got key")
+			})
+		}
 	}
 	
 	onSubmitMonitorConfig() {
-		console.log(this.monitorForm)
+		console.log(this.monitorForm.value)
+		chrome.storage.sync.set({[this.allKeys.length+1]: this.monitorForm.value}, () => {
+			console.log('Succesfully stored in chrome storage')
+		})
+		this.getAllLocalStorageKeys()
+	}
+
+	getAllLocalStorageKeys() {
+		chrome.storage.sync.get(null, function(items) {
+			this.allKeys = Object.keys(items);
+			console.log(this.allKeys);
+
+			for(let key of this.allKeys) {
+				chrome.storage.sync.get(key, (value) => {
+					console.log(value)
+				})
+			}
+		});
 	}
 }
