@@ -4,7 +4,7 @@
 	"short_name": "cw",
 	"version": "1.0.0",
 	"description": "CW Generator",
-	"permissions": ["tabs"],
+	"permissions": ["tabs", "storage"],
 	"action": {
 		"default_popup": "index.html?#/popup",
 		"default_title": "Angular Chrome Extension"
