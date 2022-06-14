@@ -7,45 +7,51 @@
 		<title>Options Page</title>
 	</head>
 	<body>
-		<div>
-			<h1>Webhook Servers</h1>
-			<div *ngFor="let server of webhookServers">
-				Name: {{ server.serverName }} Webhook: {{ server.webhookUrl }}
-			</div>
+		<div class="monitor-form">
+			<form [formGroup]="monitorForm" (ngSubmit)="onSubmitMonitorConfig()">
+				<ul class="form-wrapper">
+					<li class="form-row">
+						<label for="identifier">Element Identifier</label>
+						<input type="text" id="identifier" formControlName="identifier" />
+					</li>
+				</ul>
+				<ul class="form-wrapper">
+					<li class="form-row">
+						<label for="textToSearch">Text to Search</label>
+						<input type="text" id="textToSearch" formControlName="textToSearch" />
+					</li>
+				</ul>
+				<ul class="form-wrapper">
+					<li class="form-row">
+						<label for="textState">Is text on Page</label>
+						<div *ngFor="let state of textState">
+							<input
+								type="radio"
+								id="textState"
+								[value]="state"
+								formControlName="textState"
+							/>
+							{{ state }}
+						</div>
+					</li>
+				</ul>
+				<ul class="form-wrapper">
+					<li class="form-row">
+						<button type="submit">Add Monitor Config</button>
+					</li>
+				</ul>
+			</form>
 		</div>
 
-		<form [formGroup]="optionsForm" (ngSubmit)="onUpdateWebhook()">
-			<label for="serverName">serverName</label>
-			<input type="text" id="serverName" formControlName="serverName" />
-			<label for="webhookUrl">Webhook URL</label>
-			<input type="text" id="webhookUrl" formControlName="webhookUrl" />
-			<button type="submit">Update Webhook Url</button>
-		</form>
-		<span *ngIf="!optionsForm.valid && optionsForm.touched"
-			>Name of server and Webhook is required</span
-		>
-
-		<form [formGroup]="monitorForm" (ngSubmit)="onSubmitMonitorConfig()">
-			<label for="pageUrl">Page URL</label>
-			<input type="text" id="pageUrl" formControlName="pageURL" />
-			<label for="identifier">Element Identifier</label>
-			<input type="text" id="identifier" formControlName="identifier" />
-			<label for="textToSearch">Text to Search</label>
-			<input type="text" id="textToSearch" formControlName="textToSearch" />
-			<label for="textState">Is text on Page</label>
-			<div *ngFor="let state of textState">
-				<input
-					type="radio"
-					id="textState"
-					[value]="state"
-					formControlName="textState"
-				/>
-				{{ state }}
-			</div>
-			<button type="submit">Add Monitor Config</button>
-		</form>
 		<span *ngIf="!monitorForm.valid && monitorForm.touched"
-			>The config is fully required to save</span
-		>
+			>The config is fully required to save
+		</span>
 	</body>
+
+	<button (click)="getAllLocalStorage()">Get All Local Storage</button>
+	<button (click)="getAllSyncStorage()">Get All Sync Storage</button>
+
+	<app-servers>
+		{{ 'putting some stuff in here' }}
+	</app-servers>
 </html>
