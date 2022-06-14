@@ -1,19 +1,44 @@
 <div>
-	<h1>Webhook Servers</h1>
-	<div *ngFor="let server of webhookServers">
-		Name: {{ server.serverName }} Webhook: {{ server.webhookUrl }}
-	</div>
+	<mat-card>
+		<h1>Webhook Servers</h1>
+
+		<div *ngFor="let server of webhookServers">
+			Name: {{ server.serverName }} Webhook: {{ server.webhookUrl }}
+		</div>
+
+		<form class="options-form" [formGroup]="optionsForm" (ngSubmit)="onUpdateWebhook()">
+			<mat-form-field class="options-full-width" appearance="fill">
+				<mat-label>Server Name</mat-label>
+				<input
+					type="text"
+					matInput
+					formControlName="serverName"
+					placeholder="Checker"
+					id="serverName"
+				/>
+				<mat-error *ngIf="optionsForm.get('serverName').hasError('required')">
+					Please enter a server name
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field class="options-full-width" appearance="fill">
+				<mat-label>Webhook URL</mat-label>
+				<input
+					type="text"
+					matInput
+					formControlName="webhookUrl"
+					placeholder="Checker"
+					id="webhookUrl"
+				/>
+				<mat-error *ngIf="optionsForm.get('webhookUrl').hasError('required')">
+					Please enter a server name
+				</mat-error>
+			</mat-form-field>
+		</form>
+
+		<mat-divider inset></mat-divider>
+
+		<button mat-raised-button color="primary" type="submit">Update Webhook Url</button>
+
+	</mat-card>
 </div>
-
-<form [formGroup]="optionsForm" (ngSubmit)="onUpdateWebhook()">
-	<label for="serverName">serverName</label>
-	<input type="text" id="serverName" formControlName="serverName"/>
-	<label for="webhookUrl">Webhook URL</label>
-	<input type="text" id="webhookUrl" formControlName="webhookUrl"/>
-
-	<button type="submit">Update Webhook Url</button>
-</form>
-
-<span *ngIf="!optionsForm.valid && optionsForm.touched">
-    Name of server and Webhook is required
-</span>
