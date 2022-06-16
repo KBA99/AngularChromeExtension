@@ -6,52 +6,76 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Options Page</title>
 	</head>
-	<body>
-		<div class="monitor-form">
-			<form [formGroup]="monitorForm" (ngSubmit)="onSubmitMonitorConfig()">
-				<ul class="form-wrapper">
-					<li class="form-row">
-						<label for="identifier">Element Identifier</label>
-						<input type="text" id="identifier" formControlName="identifier" />
-					</li>
-				</ul>
-				<ul class="form-wrapper">
-					<li class="form-row">
-						<label for="textToSearch">Text to Search</label>
-						<input type="text" id="textToSearch" formControlName="textToSearch" />
-					</li>
-				</ul>
-				<ul class="form-wrapper">
-					<li class="form-row">
-						<label for="textState">Is text on Page</label>
-						<div *ngFor="let state of textState">
-							<input
-								type="radio"
-								id="textState"
-								[value]="state"
-								formControlName="textState"
-							/>
-							{{ state }}
-						</div>
-					</li>
-				</ul>
-				<ul class="form-wrapper">
-					<li class="form-row">
-						<button type="submit">Add Monitor Config</button>
-					</li>
-				</ul>
-			</form>
-		</div>
 
-		<span *ngIf="!monitorForm.valid && monitorForm.touched"
-			>The config is fully required to save
-		</span>
+	<body>
+		<div>
+			<mat-card>
+				<form
+					class="monitor-form"
+					[formGroup]="monitorForm"
+					(ngSubmit)="onSubmitMonitorConfig()"
+				>
+				<h2>Monitor Configuration</h2>
+					<mat-form-field class="monitor-full-width" appearance="fill">
+						<mat-label>Element Identifier</mat-label>
+						<input
+							type="text"
+							matInput
+							formControlName="identifier"
+							placeholder="'body'"
+							id="identifier"
+						/>
+						<mat-error *ngIf="monitorForm.get('identifier').hasError('required')">
+							Please enter an identifier
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="monitor-full-width" appearance="fill">
+						<mat-label>Text To Search</mat-label>
+						<input
+							type="text"
+							matInput
+							formControlName="textToSearch"
+							placeholder="textToSearch"
+							id="textToSearch"
+						/>
+						<mat-error *ngIf="monitorForm.get('textToSearch').hasError('required')">
+							Please enter an input to monitor
+						</mat-error>
+					</mat-form-field>
+
+					<br />
+					<h3>Text to search</h3>
+					<div class="radio-option">
+						<mat-radio-group
+							aria-label="Select an option"
+							*ngFor="let state of textState"
+							formControlName="textState"
+							class="radio-button"
+						>
+							<mat-radio-button [value]="state">{{ state }} </mat-radio-button>
+						</mat-radio-group>
+					</div>
+				</form>
+
+				<mat-divider inset></mat-divider>
+
+				<button mat-raised-button color="primary" type="submit" style="margin-top: 5px">
+					Start Monitor
+				</button>
+				<span *ngIf="!monitorForm.valid && monitorForm.touched"
+					>The config is fully required to save
+				</span>
+			</mat-card>
+		</div>
 	</body>
 
-	<button (click)="getAllLocalStorage()">Get All Local Storage</button>
-	<button (click)="getAllSyncStorage()">Get All Sync Storage</button>
+	<button mat-raised-button color="accent" (click)="getAllLocalStorage()">
+		Get All Local Storage
+	</button>
+	<button mat-raised-button color="warn" (click)="getAllSyncStorage()">
+		Get All Sync Storage
+	</button>
 
-	<app-servers>
-		{{ 'putting some stuff in here' }}
-	</app-servers>
+	<app-servers></app-servers>
 </html>
