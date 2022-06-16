@@ -8,19 +8,9 @@ import { serverWebhooks } from '../../../options.interface';
 	templateUrl: './servers.component.html',
 	styleUrls: ['./servers.component.scss'],
 })
-export class ServersComponent extends AbstractOptionsDirective implements OnInit {
+export class ServersComponent extends AbstractOptionsDirective {
 	constructor() {
 		super();
-	}
-
-	optionsForm: FormGroup;
-	webhookServers: serverWebhooks[] = [];
-
-	ngOnInit(): void {
-		this.optionsForm = new FormGroup({
-			serverName: new FormControl(null, [Validators.required, Validators.nullValidator]),
-			webhookUrl: new FormControl(null, [Validators.required, Validators.nullValidator]),
-		});
 	}
 
 	fetchAllServers() {
@@ -30,8 +20,7 @@ export class ServersComponent extends AbstractOptionsDirective implements OnInit
 	}
 
 	onUpdateWebhook() {
-
-		chrome.storage.sync.set({ }, () => {
+		chrome.storage.sync.set({}, () => {
 			console.log('Succesfully stored in chrome storage');
 		});
 

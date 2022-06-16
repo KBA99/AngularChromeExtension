@@ -1,7 +1,31 @@
-import { Directive } from '@angular/core';
+import { Directive, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { serverWebhooks } from './options.interface';
 
 @Directive()
-export abstract class AbstractOptionsDirective {
+export abstract class AbstractOptionsDirective implements OnInit {
+
+	serverForm: FormGroup;
+	webhookServers: serverWebhooks[] = [];
+
+
+	textState: string[] = ['Waiting', 'Disapper']
+	monitorForm: FormGroup;
+
+	ngOnInit(): void {
+		this.monitorForm = new FormGroup({
+			'pageURL': new FormControl(null, [Validators.required, Validators.nullValidator]),
+			'identifier': new FormControl(null, [Validators.required, Validators.nullValidator]),
+			'textToSearch': new FormControl(null, [Validators.required, Validators.nullValidator]),
+			'textState': new FormControl(null, [Validators.required, Validators.nullValidator])
+		});
+
+		this.serverForm = new FormGroup({
+			serverName: new FormControl(null, [Validators.required, Validators.nullValidator]),
+			webhookUrl: new FormControl(null, [Validators.required, Validators.nullValidator]),
+		});
+	}
+	
 	allKeys: string[] = [];
 
 	getAllSyncStorage() {
