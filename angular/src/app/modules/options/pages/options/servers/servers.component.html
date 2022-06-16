@@ -1,12 +1,13 @@
 <div>
 	<mat-card>
-		<h1>Webhook Servers</h1>
-
 		<div *ngFor="let server of webhookServers">
 			Name: {{ server.serverName }} Webhook: {{ server.webhookUrl }}
 		</div>
+	</mat-card>
 
-		<form class="options-form" [formGroup]="optionsForm" (ngSubmit)="onUpdateWebhook()">
+	<mat-card>
+		<h1>Webhook Servers</h1>
+		<form class="options-form" [formGroup]="serverForm" (ngSubmit)="onUpdateWebhook()">
 			<mat-form-field class="options-full-width" appearance="fill">
 				<mat-label>Server Name</mat-label>
 				<input
@@ -16,7 +17,7 @@
 					placeholder="Checker"
 					id="serverName"
 				/>
-				<mat-error *ngIf="optionsForm.get('serverName').hasError('required')">
+				<mat-error *ngIf="serverForm.get('serverName').hasError('required')">
 					Please enter a server name
 				</mat-error>
 			</mat-form-field>
@@ -30,15 +31,14 @@
 					placeholder="Checker"
 					id="webhookUrl"
 				/>
-				<mat-error *ngIf="optionsForm.get('webhookUrl').hasError('required')">
+				<mat-error *ngIf="serverForm.get('webhookUrl').hasError('required')">
 					Please enter a server name
 				</mat-error>
 			</mat-form-field>
+
+			<mat-divider inset></mat-divider>
+
+			<button mat-raised-button color="primary" type="submit">Update Webhook Url</button>
 		</form>
-
-		<mat-divider inset></mat-divider>
-
-		<button mat-raised-button color="primary" type="submit">Update Webhook Url</button>
-
 	</mat-card>
 </div>
