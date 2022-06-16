@@ -1,0 +1,20 @@
+.monitor-form {
+	min-width: 150px;
+	max-width: 500px;
+	width: 100%;
+}
+
+.monitor-full-width {
+	width: 100%;
+}
+
+.radio-option {
+	display: flex;
+	flex-direction: column;
+
+	.radio-button {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+}
+
