@@ -1,4 +1,4 @@
-export interface serverWebhooks {
+export interface ServerWebhooks {
     serverName: string
     webhookUrl: string
 }
