@@ -1,13 +1,14 @@
 import { Directive, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { serverWebhooks } from './options.interface';
+import { ServerWebhooks } from './options.interface';
 
 @Directive()
 export abstract class AbstractOptionsDirective implements OnInit {
 
 	serverForm: FormGroup;
-	webhookServers: serverWebhooks[] = [];
-
+	serverWebhooks: ServerWebhooks[] = [];
+	allSyncKeys: string[] = [];
+	allLocalKeys: string[] = [];
 
 	textState: string[] = ['Waiting', 'Disapper']
 	monitorForm: FormGroup;
@@ -25,25 +26,29 @@ export abstract class AbstractOptionsDirective implements OnInit {
 			webhookUrl: new FormControl(null, [Validators.required, Validators.nullValidator]),
 		});
 	}
-	
-	allKeys: string[] = [];
 
 	getAllSyncStorage() {
 		chrome.storage.sync.get(null, function (items) {
-			console.log(items);
-			this.allKeys = Object.keys(items);
+			this.allSyncKeys = Object.keys(items);
 		});
 	}
 
 	getAllLocalStorage() {
 		chrome.storage.local.get(null, function (items) {
-			console.log(items);
-			this.allKeys = Object.keys(items);
+			this.allLocalKeys = Object.keys(items);
 		});
 	}
 
-	logAllKeys() {
-		for (let key of this.allKeys) {
+	logAllLocalKeys() {
+		for (let key of this.allLocalKeys) {
+			chrome.storage.sync.get(key, (value) => {
+				console.log(value);
+			});
+		}
+	}
+
+	logAllSyncKeys() {
+		for (let key of this.allSyncKeys) {
 			chrome.storage.sync.get(key, (value) => {
 				console.log(value);
 			});
