@@ -28,6 +28,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "angular/src/favicon.ico",
+              "angular/src/images",
               "angular/src/assets",
               "angular/src/manifest.json"
             ],
