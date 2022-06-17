@@ -7,68 +7,11 @@
 		<title>Options Page</title>
 	</head>
 
-	<body>
-		<div>
-			<mat-card>
-				<form
-					class="monitor-form"
-					[formGroup]="monitorForm"
-					(ngSubmit)="onSubmitMonitorConfig()"
-				>
-				<h2>Monitor Configuration</h2>
-					<mat-form-field class="monitor-full-width" appearance="fill">
-						<mat-label>Element Identifier</mat-label>
-						<input
-							type="text"
-							matInput
-							formControlName="identifier"
-							placeholder="'body'"
-							id="identifier"
-						/>
-						<mat-error *ngIf="monitorForm.get('identifier').hasError('required')">
-							Please enter an identifier
-						</mat-error>
-					</mat-form-field>
-
-					<mat-form-field class="monitor-full-width" appearance="fill">
-						<mat-label>Text To Search</mat-label>
-						<input
-							type="text"
-							matInput
-							formControlName="textToSearch"
-							placeholder="textToSearch"
-							id="textToSearch"
-						/>
-						<mat-error *ngIf="monitorForm.get('textToSearch').hasError('required')">
-							Please enter an input to monitor
-						</mat-error>
-					</mat-form-field>
-
-					<br />
-					<h3>Text to search</h3>
-					<div class="radio-option">
-						<mat-radio-group
-							aria-label="Select an option"
-							*ngFor="let state of textState"
-							formControlName="textState"
-							class="radio-button"
-						>
-							<mat-radio-button [value]="state">{{ state }} </mat-radio-button>
-						</mat-radio-group>
-					</div>
-				</form>
-
-				<mat-divider inset></mat-divider>
-
-				<button mat-raised-button color="primary" type="submit" style="margin-top: 5px">
-					Start Monitor
-				</button>
-				<span *ngIf="!monitorForm.valid && monitorForm.touched"
-					>The config is fully required to save
-				</span>
-			</mat-card>
-		</div>
-	</body>
+	<mat-tab-group>
+		<mat-tab label="Servers"><app-servers></app-servers> </mat-tab>
+		<mat-tab label="Monitor"><app-monitor></app-monitor></mat-tab>
+		<mat-tab label="Third"> Content 3 </mat-tab>
+	</mat-tab-group>
 
 	<button mat-raised-button color="accent" (click)="getAllLocalStorage()">
 		Get All Local Storage
@@ -76,6 +19,4 @@
 	<button mat-raised-button color="warn" (click)="getAllSyncStorage()">
 		Get All Sync Storage
 	</button>
-
-	<app-servers></app-servers>
 </html>
