@@ -1,37 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AbstractOptionsDirective } from '../../../abstract-options.directive';
-import { serverWebhooks } from '../../../options.interface';
+import { ServerWebhooks } from '../../../options.interface';
 
 @Component({
 	selector: 'app-servers',
 	templateUrl: './servers.component.html',
 	styleUrls: ['./servers.component.scss'],
 })
-export class ServersComponent extends AbstractOptionsDirective {
+export class ServersComponent extends AbstractOptionsDirective implements OnInit, AfterViewInit {
+	serversObject: {}
 	constructor() {
 		super();
 	}
 
-	fetchAllServers() {
-		chrome.storage.sync.get('servers', (result) => {
-			console.log(result);
+	allServers: ServerWebhooks[]
+
+	ngAfterViewInit(): void {
+		console.log("Firing off")
+		chrome.storage.sync.get('servers', (result: {servers: ServerWebhooks[]}) => {
+			this.allServers = result.servers
 		});
 	}
 
+	override ngOnInit(): void {
+		super.ngOnInit()
+	}
+
+	fetchAllServers() {
+		console.log(this.allServers)
+	}
+
 	onUpdateWebhook() {
-		chrome.storage.sync.set({}, () => {
+		this.allServers.push(this.serverForm.value)
+		chrome.storage.sync.set({servers: this.allServers}, () => {
 			console.log('Succesfully stored in chrome storage');
 		});
 
-		console.log('updated');
 		this.getAllSyncStorage();
-		console.log(this.allKeys);
-
-		for (let key of this.allKeys) {
-			chrome.storage.sync.get(key, () => {
-				console.log('succesfully got key');
-			});
-		}
 	}
 }
