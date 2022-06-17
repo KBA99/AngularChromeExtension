@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { AbstractOptionsDirective } from '../../../abstract-options.directive';
 import { ServerWebhooks } from '../../../options.interface';
 
@@ -7,7 +9,7 @@ import { ServerWebhooks } from '../../../options.interface';
 	templateUrl: './servers.component.html',
 	styleUrls: ['./servers.component.scss'],
 })
-export class ServersComponent extends AbstractOptionsDirective implements OnInit, AfterViewInit {
+export class ServersComponent extends AbstractOptionsDirective implements OnInit {
 	serversObject: {};
 	constructor() {
 		super();
@@ -15,23 +17,25 @@ export class ServersComponent extends AbstractOptionsDirective implements OnInit
 
 	allServers: ServerWebhooks[];
 
-	ngAfterViewInit(): void {
-		console.log('Firing off');
+	ngOnInit(): void {
 		chrome.storage.sync.get('servers', (result: { servers: ServerWebhooks[] }) => {
 			this.allServers = result.servers;
 		});
-		console.log(this.allServers);
-	}
 
-	override ngOnInit(): void {
-		super.ngOnInit();
+		this.serverForm = new FormGroup({
+			serverName: new FormControl(null, [Validators.required, Validators.nullValidator]),
+			webhookUrl: new FormControl(null, [Validators.required, Validators.nullValidator]),
+		});
 	}
 
 	fetchAllServers() {
 		console.log(this.allServers);
 	}
 
-	onUpdateWebhook() {
+	onAddServer() {
+		if(!this.serverForm.valid) {
+			return
+		}
 		this.allServers.push(this.serverForm.value);
 		this.updateChromeServerList();
 	}
@@ -43,7 +47,8 @@ export class ServersComponent extends AbstractOptionsDirective implements OnInit
 		this.updateChromeServerList();
 	}
 
-	updateChromeServerList() { //Use this method after updating allServers object to keep in sync with chrome
+	updateChromeServerList() {
+		//Use this method after updating allServers object to keep in sync with chrome
 		chrome.storage.sync.set({ servers: this.allServers }, () => {
 			console.log('Succesfully stored in chrome storage');
 		});
