@@ -1,30 +1,16 @@
-import { Directive, OnInit } from '@angular/core';
+import { Directive } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServerWebhooks } from './options.interface';
 
 @Directive()
-export abstract class AbstractOptionsDirective implements OnInit {
+export abstract class AbstractOptionsDirective {
 	serverForm: FormGroup;
+
 	serverWebhooks: ServerWebhooks[] = [];
 	allSyncKeys: string[] = [];
 	allLocalKeys: string[] = [];
 
 	textState: string[] = ['Waiting', 'Disapper'];
-	monitorForm: FormGroup;
-
-	ngOnInit(): void {
-		this.monitorForm = new FormGroup({
-			pageURL: new FormControl(null, [Validators.required, Validators.nullValidator]),
-			identifier: new FormControl(null, [Validators.required, Validators.nullValidator]),
-			textToSearch: new FormControl(null, [Validators.required, Validators.nullValidator]),
-			textState: new FormControl(null, [Validators.required, Validators.nullValidator]),
-		});
-
-		this.serverForm = new FormGroup({
-			serverName: new FormControl(null, [Validators.required, Validators.nullValidator]),
-			webhookUrl: new FormControl(null, [Validators.required, Validators.nullValidator]),
-		});
-	}
 
 	getAllSyncStorage() {
 		chrome.storage.sync.get(null, function (items) {
