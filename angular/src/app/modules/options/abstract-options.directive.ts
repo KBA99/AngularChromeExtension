@@ -4,21 +4,20 @@ import { ServerWebhooks } from './options.interface';
 
 @Directive()
 export abstract class AbstractOptionsDirective implements OnInit {
-
 	serverForm: FormGroup;
 	serverWebhooks: ServerWebhooks[] = [];
 	allSyncKeys: string[] = [];
 	allLocalKeys: string[] = [];
 
-	textState: string[] = ['Waiting', 'Disapper']
+	textState: string[] = ['Waiting', 'Disapper'];
 	monitorForm: FormGroup;
 
 	ngOnInit(): void {
 		this.monitorForm = new FormGroup({
-			'pageURL': new FormControl(null, [Validators.required, Validators.nullValidator]),
-			'identifier': new FormControl(null, [Validators.required, Validators.nullValidator]),
-			'textToSearch': new FormControl(null, [Validators.required, Validators.nullValidator]),
-			'textState': new FormControl(null, [Validators.required, Validators.nullValidator])
+			pageURL: new FormControl(null, [Validators.required, Validators.nullValidator]),
+			identifier: new FormControl(null, [Validators.required, Validators.nullValidator]),
+			textToSearch: new FormControl(null, [Validators.required, Validators.nullValidator]),
+			textState: new FormControl(null, [Validators.required, Validators.nullValidator]),
 		});
 
 		this.serverForm = new FormGroup({
