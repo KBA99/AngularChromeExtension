@@ -48,14 +48,17 @@
 
 	<mat-card style="margin: 8px">
 		<h2>Servers</h2>
-		<div class="server-list" *ngFor="let server of allServers">
-			<p>
-				Server Name: {{ server.serverName }}
-				<!-- Webhook: {{ server.webhookUrl }} -->
-			</p>
-			<button mat-icon-button color="warn" (click)="onDeleteServer(server)">
-				<mat-icon class="delete-button">cancel</mat-icon>
-			</button>
-		</div>
+		<section *ngFor="let server of allServers">
+			<mat-divider></mat-divider>
+			<div class="server-list" >
+				<p>
+					Server Name: {{ server.serverName }}
+					<!-- Webhook: {{ server.webhookUrl }} -->
+				</p>
+				<button mat-icon-button color="warn" (click)="onDeleteServer(server)">
+					<mat-icon class="delete-button">cancel</mat-icon>
+				</button>
+			</div>
+		</section>
 	</mat-card>
 </div>
