@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
 	declarations: [OptionsComponent, ServersComponent],
@@ -27,11 +28,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 		MatCardModule,
 		MatDividerModule,
 		MatInputModule,
+		MatTabsModule,
+		MatIconModule,
+		MatSnackBarModule,
+		MatCheckboxModule,
+		MatButtonModule,
 
 		// Component
 
-		MatCheckboxModule,
-		MatButtonModule,
+
 		// MatAutocompleteModule,
 		// MatDatepickerModule,
 		// MatSelectModule,
@@ -43,16 +48,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 		// MatListModule,
 		// MatGridListModule,
 		// MatStepperModule,
-		// MatTabsModule,
 		// MatExpansionModule,
 		// MatButtonToggleModule,
 		// MatChipsModule,
-		MatIconModule,
 		// MatProgressSpinnerModule,
 		// MatProgressBarModule,
 		// MatDialogModule,
 		// MatTooltipModule,
-		MatSnackBarModule,
 		// MatTableModule,
 		// MatSortModule,
 		// MatPaginatorModule,
