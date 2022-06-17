@@ -7,3 +7,12 @@
 .options-full-width {
 	width: 100%;
 }
+
+.server-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.fetch-all-servers-button {
+	margin-top: 10px
+}

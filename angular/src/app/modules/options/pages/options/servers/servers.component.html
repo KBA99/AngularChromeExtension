@@ -36,14 +36,26 @@
 		</form>
 	</mat-card>
 
-	<button mat-raised-button color="primary" type="submit"  (click)="fetchAllServers()" style="margin-top: 10px">
+	<button
+		mat-raised-button
+		color="primary"
+		type="submit"
+		(click)="fetchAllServers()"
+		class="fetch-all-servers-button"
+	>
 		Fetch All Servers
 	</button>
 
 	<mat-card style="margin: 8px">
 		<h2>Servers</h2>
-		<div *ngFor="let server of allServers">
-			Name: {{ server.serverName }} Webhook: {{ server.webhookUrl }}
+		<div class="server-list" *ngFor="let server of allServers">
+			<p>
+				Server Name: {{ server.serverName }}
+				<!-- Webhook: {{ server.webhookUrl }} -->
+			</p>
+			<button mat-icon-button color="warn" (click)="onDeleteServer(server)">
+				<mat-icon class="delete-button">cancel</mat-icon>
+			</button>
 		</div>
 	</mat-card>
 </div>
