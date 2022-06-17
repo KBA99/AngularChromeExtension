@@ -15,9 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MonitorComponent } from 'src/app/shared/monitor/monitor.component';
 
 @NgModule({
-	declarations: [OptionsComponent, ServersComponent],
+	declarations: [OptionsComponent, ServersComponent, MonitorComponent],
 	imports: [
 		CommonModule,
 		OptionsRoutingModule,
