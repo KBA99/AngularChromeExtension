@@ -13,6 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
 	declarations: [OptionsComponent, ServersComponent],
@@ -51,7 +52,7 @@ import { MatIconModule } from '@angular/material/icon';
 		// MatProgressBarModule,
 		// MatDialogModule,
 		// MatTooltipModule,
-		// MatSnackBarModule,
+		MatSnackBarModule,
 		// MatTableModule,
 		// MatSortModule,
 		// MatPaginatorModule,
