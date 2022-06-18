@@ -8,7 +8,9 @@ export class MonitorService {
 	allMonitorConfigs: MonitorConfig[] = [];
 	
 	constructor() {
-		console.log("service called!")
+		chrome.storage.sync.get('monitor', (result: { monitor: MonitorConfig[] }) => {
+			this.allMonitorConfigs = result.monitor;
+		});
 	}
 
 	addMonitorConfig(config: MonitorConfig) {
