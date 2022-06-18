@@ -1,0 +1,11 @@
+.monitor-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+	max-width: 500px;
+	width: 50%;
+}
+
+mat-radio-group {
+    margin-right: 10px;
+}
