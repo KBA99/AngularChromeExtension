@@ -1,7 +1,20 @@
-<div>
-	<mat-card>
-		<form class="monitor-form" [formGroup]="monitorForm" (ngSubmit)="onAddMonitorConfig()">
-			<h2>Monitor Configuration</h2>
+<mat-card>
+	<form [formGroup]="monitorForm" (ngSubmit)="onAddMonitorConfig()">
+		<mat-card-title>
+			<h3>Monitor Configuration</h3>
+		</mat-card-title>
+
+		<mat-card-content class="monitor-form">
+			<mat-form-field appearance="fill">
+				<mat-label>Label</mat-label>
+				<input
+					type="text"
+					matInput
+					formControlName="label"
+					placeholder="Enter a friendly label name"
+					id="label"
+				/>
+			</mat-form-field>
 
 			<mat-form-field appearance="fill">
 				<mat-label>Page URL</mat-label>
@@ -36,16 +49,18 @@
 				/>
 			</mat-form-field>
 
-			<div class="radio-option">
+			<mat-card-actions class="radio-option">
 				<h3>Is text on page</h3>
 
 				<mat-button-toggle-group formControlName="isTextOnPage">
 					<mat-button-toggle value="true">True</mat-button-toggle>
 					<mat-button-toggle value="false">False</mat-button-toggle>
 				</mat-button-toggle-group>
-			</div>
+			</mat-card-actions>
+		</mat-card-content>
 
+		<mat-card-actions>
 			<button mat-raised-button color="primary" type="submit">Start Monitor</button>
-		</form>
-	</mat-card>
-</div>
+		</mat-card-actions>
+	</form>
+</mat-card>
