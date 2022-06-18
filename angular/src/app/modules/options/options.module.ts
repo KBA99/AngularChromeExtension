@@ -17,9 +17,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MonitorComponent } from 'src/app/shared/monitor/monitor.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MonitorConfigsComponent } from 'src/app/shared/monitor-configs/monitor-configs.component';
+
 
 @NgModule({
-	declarations: [OptionsComponent, ServersComponent, MonitorComponent],
+	declarations: [OptionsComponent, ServersComponent, MonitorComponent, MonitorConfigsComponent],
 	imports: [
 		CommonModule,
 		OptionsRoutingModule,
@@ -36,6 +39,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 		MatCheckboxModule,
 		MatButtonModule,
 		MatButtonToggleModule,
+		MatExpansionModule,
+
 
 		// Component
 
@@ -50,7 +55,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 		// MatListModule,
 		// MatGridListModule,
 		// MatStepperModule,
-		// MatExpansionModule,
 		// MatChipsModule,
 		// MatProgressSpinnerModule,
 		// MatProgressBarModule,

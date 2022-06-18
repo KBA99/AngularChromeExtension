@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
@@ -38,6 +38,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 		MatCheckboxModule,
 		MatButtonModule,
 		MatButtonToggleModule,
+		MatExpansionModule,
 	],
 	bootstrap: [AppComponent],
 })
