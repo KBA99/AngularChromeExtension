@@ -1,0 +1,10 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+	providedIn: 'root',
+})
+export class ServersService {
+	constructor() {
+		console.log('Servers service called!');
+	}
+}
