@@ -1,0 +1,11 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+	providedIn: 'root',
+})
+export class MonitorService {
+	constructor() {
+		console.log("service called!")
+	}
+
+}
