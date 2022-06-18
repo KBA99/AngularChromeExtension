@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AbstractOptionsDirective } from '../../../abstract-options.directive';
 import { ServerWebhooks } from '../../../options.interface';
 
@@ -11,11 +11,17 @@ import { ServerWebhooks } from '../../../options.interface';
 })
 export class ServersComponent extends AbstractOptionsDirective implements OnInit {
 	serversObject: {};
-	constructor() {
+	constructor(private _snackBar: MatSnackBar) {
 		super();
 	}
 
 	allServers: ServerWebhooks[];
+
+	openSnackBar(serverName: string) {
+		this._snackBar.open((serverName ? serverName : '') + ' Removed From List', 'Close', {
+			duration: 2000,
+		});
+	}
 
 	ngOnInit(): void {
 		chrome.storage.sync.get('servers', (result: { servers: ServerWebhooks[] }) => {
