@@ -12,7 +12,7 @@ import { MonitorConfig } from './monitor.interface';
 export class MonitorComponent extends AbstractOptionsDirective implements OnInit {
 	monitorForm: FormGroup;
 
-	constructor(readonly monitorService: MonitorService) {
+	constructor(protected readonly monitorService: MonitorService) {
 		super();
 	}
 
