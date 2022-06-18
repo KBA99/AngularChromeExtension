@@ -1,8 +1,20 @@
 <div>
 	<mat-card>
-		<form class="monitor-form" [formGroup]="monitorForm" (ngSubmit)="onSubmitMonitorConfig()">
+		<form class="monitor-form" [formGroup]="monitorForm" (ngSubmit)="onAddMonitorConfig()">
 			<h2>Monitor Configuration</h2>
-			<mat-form-field class="monitor-full-width" appearance="fill">
+
+			<mat-form-field appearance="fill">
+				<mat-label>Page URL</mat-label>
+				<input
+					type="text"
+					matInput
+					formControlName="pageURL"
+					placeholder="www.google.com"
+					id="pageURL"
+				/>
+			</mat-form-field>
+
+			<mat-form-field appearance="fill">
 				<mat-label>Element Identifier</mat-label>
 				<input
 					type="text"
@@ -19,26 +31,21 @@
 					type="text"
 					matInput
 					formControlName="textToSearch"
-					placeholder="textToSearch"
+					placeholder="Text to Search"
 					id="textToSearch"
 				/>
 			</mat-form-field>
 
-			<br />
-			<h3>Text Status</h3>
 			<div class="radio-option">
-				<mat-radio-group
-					aria-label="Select an option"
-					*ngFor="let state of textState"
-					class="radio-button"
-				>
-					<mat-radio-button [value]="state">{{ state }} </mat-radio-button>
-				</mat-radio-group>
+				<h3>Is text on page</h3>
+
+				<mat-button-toggle-group formControlName="isTextOnPage">
+					<mat-button-toggle value="true">True</mat-button-toggle>
+					<mat-button-toggle value="false">False</mat-button-toggle>
+				</mat-button-toggle-group>
 			</div>
 
-			<button mat-raised-button color="primary" type="submit" style="margin-top: 5px">
-				Start Monitor
-			</button>
+			<button mat-raised-button color="primary" type="submit">Start Monitor</button>
 		</form>
 	</mat-card>
 </div>
