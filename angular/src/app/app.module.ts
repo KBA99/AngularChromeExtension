@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -36,6 +37,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 		MatSnackBarModule,
 		MatCheckboxModule,
 		MatButtonModule,
+		MatButtonToggleModule,
 	],
 	bootstrap: [AppComponent],
 })
