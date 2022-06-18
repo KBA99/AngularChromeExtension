@@ -1,7 +1,13 @@
 <div>
 	<mat-card>
 		<h1>Webhook Servers</h1>
-		<form class="options-form" [formGroup]="serverForm" (ngSubmit)="onUpdateWebhook()">
+		<form
+			#formDirective="ngForm"
+			class="options-form"
+			[formGroup]="serverForm"
+			#form="ngForm"
+			(ngSubmit)="onAddServer(); form.reset()"
+		>
 			<mat-form-field class="options-full-width" appearance="fill">
 				<mat-label>Server Name</mat-label>
 				<input
@@ -11,7 +17,9 @@
 					placeholder="Server Name"
 					id="serverName"
 				/>
-				<mat-error *ngIf="serverForm.get('serverName').hasError('required')">
+				<mat-error
+					*ngIf="serverForm.get('serverName').hasError('required') && serverForm.get('serverName').touched"
+				>
 					Please enter a server name
 				</mat-error>
 			</mat-form-field>
@@ -25,7 +33,9 @@
 					placeholder="Webook URL"
 					id="webhookUrl"
 				/>
-				<mat-error *ngIf="serverForm.get('webhookUrl').hasError('required')">
+				<mat-error
+					*ngIf="serverForm.get('webhookUrl').hasError('required') && serverForm.get('webhookUrl').touched"
+				>
 					Please enter a server name
 				</mat-error>
 			</mat-form-field>
@@ -36,29 +46,33 @@
 		</form>
 	</mat-card>
 
-	<button
-		mat-raised-button
-		color="primary"
-		type="submit"
-		(click)="fetchAllServers()"
-		class="fetch-all-servers-button"
-	>
-		Fetch All Servers
-	</button>
-
 	<mat-card style="margin: 8px">
 		<h2>Servers</h2>
-		<section *ngFor="let server of allServers">
+		<section *ngFor="let server of serversService.allServers">
 			<mat-divider></mat-divider>
-			<div class="server-list" >
+			<div class="server-list">
 				<p>
 					Server Name: {{ server.serverName }}
 					<!-- Webhook: {{ server.webhookUrl }} -->
 				</p>
-				<button mat-icon-button color="warn" (click)="onDeleteServer(server)">
+				<button
+					mat-icon-button
+					color="warn"
+					(click)="onDeleteServer(server)"
+					(click)="openSnackBar(server.serverName)"
+				>
 					<mat-icon class="delete-button">cancel</mat-icon>
 				</button>
 			</div>
 		</section>
+		<button
+			mat-raised-button
+			color="primary"
+			type="submit"
+			(click)="fetchAllServers()"
+			class="fetch-all-servers-button"
+		>
+			Fetch All Servers
+		</button>
 	</mat-card>
 </div>

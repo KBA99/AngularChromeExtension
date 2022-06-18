@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ServersService } from 'src/app/servers.service';
 import { AbstractOptionsDirective } from '../../../abstract-options.directive';
 import { ServerWebhooks } from '../../../options.interface';
 
@@ -10,12 +11,12 @@ import { ServerWebhooks } from '../../../options.interface';
 	styleUrls: ['./servers.component.scss'],
 })
 export class ServersComponent extends AbstractOptionsDirective implements OnInit {
-	serversObject: {};
-	constructor(private _snackBar: MatSnackBar) {
+
+	constructor(
+		protected readonly serversService: ServersService, 
+		private _snackBar: MatSnackBar) {
 		super();
 	}
-
-	allServers: ServerWebhooks[];
 
 	openSnackBar(serverName: string) {
 		this._snackBar.open((serverName ? serverName : '') + ' Removed From List', 'Close', {
@@ -24,10 +25,6 @@ export class ServersComponent extends AbstractOptionsDirective implements OnInit
 	}
 
 	ngOnInit(): void {
-		chrome.storage.sync.get('servers', (result: { servers: ServerWebhooks[] }) => {
-			this.allServers = result.servers;
-		});
-
 		this.serverForm = new FormGroup({
 			serverName: new FormControl(null, [Validators.required, Validators.nullValidator]),
 			webhookUrl: new FormControl(null, [Validators.required, Validators.nullValidator]),
@@ -35,28 +32,17 @@ export class ServersComponent extends AbstractOptionsDirective implements OnInit
 	}
 
 	fetchAllServers() {
-		console.log(this.allServers);
+		console.log(this.serversService.allServers);
 	}
 
 	onAddServer() {
-		if(!this.serverForm.valid) {
-			return
+		if (!this.serverForm.valid) {
+			return;
 		}
-		this.allServers.push(this.serverForm.value);
-		this.updateChromeServerList();
+		this.serversService.addServer(this.serverForm.value);
 	}
 
 	onDeleteServer(server: ServerWebhooks) {
-		this.allServers = this.allServers.filter((element) => {
-			return element !== server;
-		});
-		this.updateChromeServerList();
-	}
-
-	updateChromeServerList() {
-		//Use this method after updating allServers object to keep in sync with chrome
-		chrome.storage.sync.set({ servers: this.allServers }, () => {
-			console.log('Succesfully stored in chrome storage');
-		});
+		this.serversService.removeServer(server);
 	}
 }
