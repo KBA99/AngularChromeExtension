@@ -1,0 +1,44 @@
+<div>
+	<mat-card>
+		<form class="monitor-form" [formGroup]="monitorForm" (ngSubmit)="onSubmitMonitorConfig()">
+			<h2>Monitor Configuration</h2>
+			<mat-form-field class="monitor-full-width" appearance="fill">
+				<mat-label>Element Identifier</mat-label>
+				<input
+					type="text"
+					matInput
+					formControlName="identifier"
+					placeholder="'body'"
+					id="identifier"
+				/>
+			</mat-form-field>
+
+			<mat-form-field class="monitor-full-width" appearance="fill">
+				<mat-label>Text To Search</mat-label>
+				<input
+					type="text"
+					matInput
+					formControlName="textToSearch"
+					placeholder="textToSearch"
+					id="textToSearch"
+				/>
+			</mat-form-field>
+
+			<br />
+			<h3>Text Status</h3>
+			<div class="radio-option">
+				<mat-radio-group
+					aria-label="Select an option"
+					*ngFor="let state of textState"
+					class="radio-button"
+				>
+					<mat-radio-button [value]="state">{{ state }} </mat-radio-button>
+				</mat-radio-group>
+			</div>
+
+			<button mat-raised-button color="primary" type="submit" style="margin-top: 5px">
+				Start Monitor
+			</button>
+		</form>
+	</mat-card>
+</div>
