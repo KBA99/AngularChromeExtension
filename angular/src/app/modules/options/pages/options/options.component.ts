@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { AbstractOptionsDirective } from '../../abstract-options.directive';
-import { serverWebhooks } from '../../options.interface';
 
 @Component({
 	selector: 'app-options',
@@ -9,18 +7,10 @@ import { serverWebhooks } from '../../options.interface';
 	styleUrls: ['options.component.scss'],
 })
 
-export class OptionsComponent extends AbstractOptionsDirective implements OnInit {
+export class OptionsComponent extends AbstractOptionsDirective {
 
 	constructor(){
 		super();
 	}
 
-	
-	onSubmitMonitorConfig() {
-		console.log(this.monitorForm.value)
-		chrome.storage.sync.set({[this.allKeys.length+1]: this.monitorForm.value}, () => {
-			console.log('Succesfully stored in chrome storage')
-		})
-		this.getAllSyncStorage()
-	}
 }
