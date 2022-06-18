@@ -1,1 +1,31 @@
-<p>monitor-configs works!</p>
+<div class="action-buttons">
+	<button mat-button (click)="accordion.openAll()">Expand All</button>
+	<button mat-button (click)="accordion.closeAll()">Collapse All</button>
+</div>
+
+<mat-accordion class="headers-align" multi *ngFor="let config of monitorService.allMonitorConfigs">
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title> {{ config.label }}</mat-panel-title>
+			<mat-panel-description> {{ config.textToSearch }} </mat-panel-description>
+			<mat-panel-description>
+				Is text on page: {{ config.isTextOnPage }}
+			</mat-panel-description>
+			<div>
+				<button mat-icon-button color="warn" (click)="onDeleteConfig()">
+					<mat-icon class="delete-button">cancel</mat-icon>
+				</button>
+				<button mat-icon-button color="green" (click)="onStartMonitor()">
+					<mat-icon class="start-button">check_circle</mat-icon>
+				</button>
+			</div>
+		</mat-expansion-panel-header>
+
+		<p>{{ config.pageURL }}</p>
+
+		<mat-form-field appearance="fill">
+			<mat-label>Identifier</mat-label>
+			<input matInput type="text" />
+		</mat-form-field>
+	</mat-expansion-panel>
+</mat-accordion>
