@@ -5,11 +5,11 @@ import { MonitorConfig } from './shared/monitor/monitor.interface';
 	providedIn: 'root',
 })
 export class MonitorService {
-	allMonitorConfigs: MonitorConfig[] = [];
+	allMonitorConfigs: MonitorConfig[];
 	
 	constructor() {
 		chrome.storage.sync.get('monitor', (result: { monitor: MonitorConfig[] }) => {
-			this.allMonitorConfigs = result.monitor;
+			this.allMonitorConfigs = result.monitor ? result.monitor : [];
 		});
 	}
 
