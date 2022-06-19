@@ -8,9 +8,8 @@ export class ServersService {
 	allServers: ServerWebhooks[];
 
 	constructor() {
-		console.log('Servers service called!');
 		chrome.storage.sync.get('servers', (result: { servers: ServerWebhooks[] }) => {
-			this.allServers = result.servers;
+			this.allServers = result.servers ? result.servers : [];
 		});
 	}
 
