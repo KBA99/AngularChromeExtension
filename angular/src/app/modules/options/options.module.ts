@@ -15,10 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MonitorComponent } from 'src/app/shared/monitor/monitor.component';
+import { MonitorComponent } from 'src/app/modules/shared/monitor/monitor.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MonitorConfigsComponent } from 'src/app/shared/monitor-configs/monitor-configs.component';
+import { MonitorConfigsComponent } from 'src/app/modules/shared/monitor-configs/monitor-configs.component';
 
 
 @NgModule({

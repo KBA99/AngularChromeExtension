@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MonitorConfig } from './shared/monitor/monitor.interface';
+import { MonitorConfig } from './modules/shared/monitor/monitor.interface';
 
 @Injectable({
 	providedIn: 'root',
