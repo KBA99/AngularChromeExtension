@@ -6,21 +6,20 @@ import { ServerWebhooks } from './options.interface';
 export abstract class AbstractOptionsDirective {
 	serverForm: FormGroup;
 
-	serverWebhooks: ServerWebhooks[] = [];
 	allSyncKeys: string[] = [];
 	allLocalKeys: string[] = [];
-
-	textState: string[] = ['Waiting', 'Disapper'];
 
 	getAllSyncStorage() {
 		chrome.storage.sync.get(null, function (items) {
 			this.allSyncKeys = Object.keys(items);
+			console.log(items)
 		});
 	}
 
 	getAllLocalStorage() {
 		chrome.storage.local.get(null, function (items) {
 			this.allLocalKeys = Object.keys(items);
+			console.log(items)
 		});
 	}
 
