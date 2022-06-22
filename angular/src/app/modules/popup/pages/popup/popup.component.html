@@ -1,12 +1,15 @@
-<h1>Popup</h1>
-<p>
-	You can easily send messages from the popup to the content page with the provided Tab ID!
-	(tabId=<strong>{{ tabId }}</strong>)
-</p>
+<div class="container">
+	<h1>Popup</h1>
+	<p>
+		You can easily send messages from the popup to the content page with the provided Tab ID!
+		(tabId=<strong>{{ tabId }}</strong
+		>)
+	</p>
 
-<button (click)="sendMessage()">Click me to test</button>
-<button (click)="onOpenOptionsPage()">Options</button>
+	<button (click)="sendMessage()">Click me to test</button>
+	<button (click)="onOpenOptionsPage()">Options</button>
 
-<p>
-	<strong>{{ message }}</strong>
-</p>
+	<p>
+		<strong>{{ message }}</strong>
+	</p>
+</div>
