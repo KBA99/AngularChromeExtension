@@ -1,69 +1,20 @@
-import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSelectModule } from '@angular/material/select';
-import { OptionsRoutingModule } from './options-routing.module';
 import { OptionsComponent } from './pages/options/options.component';
 import { ServersComponent } from './pages/options/servers/servers.component';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MonitorComponent } from 'src/app/modules/shared/monitor/monitor.component';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MonitorConfigsComponent } from 'src/app/modules/shared/monitor-configs/monitor-configs.component';
-
+import { SharedModule } from '../shared/shared-module';
+import { MaterialModule } from '../shared/material.module';
+import { CommonModule } from '@angular/common';
+import { OptionsRoutingModule } from './options-routing.module';
 
 @NgModule({
-	declarations: [OptionsComponent, ServersComponent, MonitorComponent, MonitorConfigsComponent],
+	declarations: [OptionsComponent, ServersComponent],
 	imports: [
+		SharedModule,
+		MaterialModule,
+		ReactiveFormsModule,
 		CommonModule,
 		OptionsRoutingModule,
-		ReactiveFormsModule,
-		MatFormFieldModule,
-		MatSelectModule,
-		MatRadioModule,
-		MatCardModule,
-		MatDividerModule,
-		MatInputModule,
-		MatTabsModule,
-		MatIconModule,
-		MatSnackBarModule,
-		MatCheckboxModule,
-		MatButtonModule,
-		MatButtonToggleModule,
-		MatExpansionModule,
-
-
-		// Component
-
-		// MatAutocompleteModule,
-		// MatDatepickerModule,
-		// MatSelectModule,
-		// MatSliderModule,
-		// MatSlideToggleModule,
-		// MatMenuModule,
-		// MatSidenavModule,
-		// MatToolbarModule,
-		// MatListModule,
-		// MatGridListModule,
-		// MatStepperModule,
-		// MatChipsModule,
-		// MatProgressSpinnerModule,
-		// MatProgressBarModule,
-		// MatDialogModule,
-		// MatTooltipModule,
-		// MatTableModule,
-		// MatSortModule,
-		// MatPaginatorModule,
-		// OptionsRoutingModule,
 	],
 })
 export class OptionsModule {}
