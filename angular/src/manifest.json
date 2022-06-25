@@ -4,20 +4,33 @@
 	"short_name": "cw",
 	"version": "1.0.0",
 	"description": "CW Generator",
-	"permissions": ["tabs", "storage"],
-	"icons": {
-		"16": "images/icon.png",
-		"24": "images/icon.png",
-		"32": "images/icon.png"
-	},
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"alarms",
+		"tabGroups",
+		"scripting",
+		"notifications",
+		"declarativeNetRequestWithHostAccess",
+		"declarativeNetRequestFeedback",
+		"declarativeContent",
+		"storage",
+		"contextMenus",
+		"sessions"
+	],
+	// "icons": {
+	// 	"16": "images/icon.png",
+	// 	"24": "images/icon.png",
+	// 	"32": "images/icon.png"
+	// },
 	"action": {
 		"default_popup": "index.html?#/popup",
-		"default_title": "Angular Chrome Extension",
-		"default_icon": {
-			"16": "images/icon.png",
-			"24": "images/icon.png",
-			"32": "images/icon.png"
-		}
+		"default_title": "Angular Chrome Extension"
+		// "default_icon": {
+		// 	"16": "images/icon.png",
+		// 	"24": "images/icon.png",
+		// 	"32": "images/icon.png"
+		// }
 	},
 	"options_page": "index.html?#/options",
 	"content_scripts": [
