@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: {
     contentPage: join(__dirname, 'src/contentPage.ts'),
-    serviceWorker: join(__dirname, 'src/serviceWorker.ts')
+    background: join(__dirname, 'src/background.ts')
   },
   module: {
     rules: [
